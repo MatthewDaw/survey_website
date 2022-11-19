@@ -15,9 +15,9 @@
   <div id="main_container">
 
     <div id="left_child">
-        <!-- <div class="box" data-id="1" style="left: var(--left-1); top: var(--top-1); z-index: var(--zi-1); width: var(--width-1); height: var(--height-1); background-color: var(--bg-1);"></div>
+        <div class="box" data-id="1" style="left: var(--left-1); top: var(--top-1); z-index: var(--zi-1); width: var(--width-1); height: var(--height-1); background-color: var(--bg-1);"></div>
         <div class="box" data-id="2" style="left: var(--left-2); top: var(--top-2); z-index: var(--zi-2); width: var(--width-2); height: var(--height-2); background-color: var(--bg-2);"></div>
-        <div class="box" data-id="2" style="left: var(--left-2); top: var(--top-2); z-index: var(--zi-2); width: var(--width-2); height: var(--height-2); background-color:red;"></div> -->
+        <div class="box" data-id="2" style="left: var(--left-2); top: var(--top-2); z-index: var(--zi-2); width: var(--width-2); height: var(--height-2); background-color:red;"></div>
     </div>
 
     <div id="right_child">
@@ -39,18 +39,7 @@ $('.box').boxModeling({
             move: true,
         });
 
-  try {
-    fetch(new Request("https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js", { method: 'HEAD', mode: 'no-cors' })).then(function(response) {
-      return true;
-    }).catch(function(e) {
-      var carbonScript = document.createElement("script");
-      carbonScript.src = "//cdn.carbonads.com/carbon.js?serve=CK7DKKQU&placement=wwwjqueryscriptnet";
-      carbonScript.id = "_carbonads_js";
-      document.getElementById("carbon-block").appendChild(carbonScript);
-    });
-  } catch (error) {
-    console.log(error);
-  }
+
 </script>
 <style>
   body { background: #fafafa; }
@@ -91,3 +80,4 @@ $('.box').boxModeling({
           --zi-2: 2;
       }
   </style>
+

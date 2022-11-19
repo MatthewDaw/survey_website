@@ -1,3 +1,14 @@
+<head>
+        <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+
+        <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/flick/jquery-ui.css">
+        <script src="https://code.jquery.com/jquery-1.12.4.min.js"
+                integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ"
+                crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    </head>
+
+
 <div id="head">
     Add at least 5 photos and spend at least eight minutes working on the collage. Time left before you can leave this page: <span id="demo">8m 00s</span>
 </div>

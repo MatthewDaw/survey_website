@@ -1,4 +1,17 @@
 
+<head>
+    <title>Box Modeling jQuery Plugin Examples</title>
+    <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/flick/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"
+            integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ"
+            crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+</head>
+
+<div class="box" data-id="1" style="left: var(--left-1); top: var(--top-1); z-index: var(--zi-1); width: var(--width-1); height: var(--height-1); background-color: green;">tata</div>
+
     <!-- <img class="active_moving_image" src="https://avatars3.githubusercontent.com/u/9167554?s=460&v=4" draggable=false /> -->
 <script>
 
@@ -267,7 +280,7 @@ function past_image_to_canvas(src,x_position, y_position, rotation, width, heigh
     return new_img
 }
 
-past_image_to_canvas()
+// past_image_to_canvas()
 
 function save_current_image_data(){
     sessionStorage.setItem("collage_img_information", JSON.stringify(collage_data));
@@ -308,6 +321,75 @@ function add_new_image(src,x_position,y_position)
 
 }
 
-add_new_image("https://cdn.britannica.com/23/523-050-0C120420/cow-Holstein-Friesian.jpg",0,0)
+// add_new_image("https://cdn.britannica.com/23/523-050-0C120420/cow-Holstein-Friesian.jpg",0,0)
 
 </script>
+
+
+
+
+<script src="pages/box-modeling.js"></script>
+
+<script>
+
+$('.box').boxModeling({
+            rotate: true,
+            resize: true,
+            move: true,
+        });
+
+//   try {
+//     fetch(new Request("https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js", { method: 'HEAD', mode: 'no-cors' })).then(function(response) {
+//       return true;
+//     }).catch(function(e) {
+//       var carbonScript = document.createElement("script");
+//       carbonScript.src = "//cdn.carbonads.com/carbon.js?serve=CK7DKKQU&placement=wwwjqueryscriptnet";
+//       carbonScript.id = "_carbonads_js";
+//       document.getElementById("carbon-block").appendChild(carbonScript);
+//     });
+//   } catch (error) {
+//     console.log(error);
+//   }
+</script>
+
+<style>
+  body { background: #fafafa; }
+      .box {
+          position: absolute;
+          user-select: none;
+          transform: translate(-50%, -50%);
+      }
+
+      .resize-handler {
+          height: 10px;
+          width: 10px;
+          background-color: #0055ff;
+          position: absolute;
+          border-radius: 100px;
+          border: 1px solid #ffffff;
+          user-select: none;
+          display: none;
+      }
+      .resize-handler:hover {background-color: #0000cc;}
+      .resize-handler.rotate {cursor: url('https://findicons.com/files/icons/1620/crystal_project/16/rotate_ccw.png'), auto;}
+
+      :root {
+          /* id-1 */
+          --left-1: 200px;
+          --top-1: 480px;
+          --width-1: 200px;
+          --height-1: 200px;
+          --bg-1: #ffff00cc;
+          --zi-1: 1;
+
+          /* id-2 */
+          --left-2: 500px;
+          --top-2: 480px;
+          --width-2: 300px;
+          --height-2: 200px;
+          --bg-2: #0050ffcc;
+          --zi-2: 2;
+      }
+  </style>
+
+
