@@ -69,7 +69,7 @@ function collect_input(){
 }
 
 #ins_image{
-  height: 80%;
+  height: 60%;
 }
 
 

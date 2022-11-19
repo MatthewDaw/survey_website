@@ -26,11 +26,12 @@ function start_up_procedure(){
     $("#collage_manipulator_container").mouseup(doneDragging);
     
     $("#toolchooser").change(changeMode);
+    var time_at_last_update = performance.now();
 }
 
 // run this code when fully loaded
 $(window).load(function () {
-    
+    var current_search_query = ""
     start_up_procedure()
     
 });
@@ -266,13 +267,21 @@ function past_image_to_canvas(src,x_position, y_position, rotation, width, heigh
     return new_img
 }
 
+past_image_to_canvas()
+
 function save_current_image_data(){
     sessionStorage.setItem("collage_img_information", JSON.stringify(collage_data));
 }
 
+var time_at_last_update = performance.now();
+
 function add_new_image(src,x_position,y_position)
 {
+    var current_search_query = $("#search_input_box").val();
 
+    var end = performance.now();
+
+    
     if (src in collage_data){
         alert("You can't have the same image in the collage multiple times")
         return
@@ -298,5 +307,7 @@ function add_new_image(src,x_position,y_position)
     $(new_img).css("left", newX_bounded_by_left_and_right);
 
 }
+
+add_new_image("https://cdn.britannica.com/23/523-050-0C120420/cow-Holstein-Friesian.jpg",0,0)
 
 </script>

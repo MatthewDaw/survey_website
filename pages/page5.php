@@ -4,11 +4,7 @@
     </div>
     <div id="examples">
 
-        <div style="text-align:center; padding-bottom:20px">
-            <span class="dot" onclick="currentSlide(1)">Example 1</span> 
-            <span class="dot" onclick="currentSlide(2)">Example 2</span> 
-            <span class="dot" onclick="currentSlide(3)">Example 3</span> 
-        </div>
+
 
         <div class="container-not-moving">
             <div class="slidercontainer ">

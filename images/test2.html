@@ -1,0 +1,59 @@
+<style>
+.resizable {
+    display: inline-block;
+    background: red;
+    resize: both;
+    overflow: hidden;
+    line-height: 0;
+    }
+  
+  .resizable img {
+    width: 100%;
+    height: 100%;
+  }
+  </style>
+<!-- 
+  <div class='resizable'>
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Pigeon_Point_Lighthouse_%282016%29.jpg/220px-Pigeon_Point_Lighthouse_%282016%29.jpg" alt="">  
+
+</div> -->
+
+<script>
+var mouseXY = {};
+    $( document ).on( "mousemove", function( event ) {
+      mouseXY.X = event.pageX; 
+      mouseXY.Y = event.pageY;
+    });
+    var iCow = $("#cow");
+    var prevXY = {X: null, Y: null};
+    var cowInterval = setInterval(function()
+    {
+    
+      
+      if(prevXY.Y != mouseXY.Y || prevXY.X != mouseXY.X && (prevXY.Y != null || prevXY.X != null)) {
+      
+      var cowXY = iCow.position();
+      var diffX = cowXY.left - mouseXY.X;
+      var diffY = cowXY.top - mouseXY.Y;
+      var tan = diffY / diffX;
+     
+      var atan = Math.atan(tan)* 180 / Math.PI;;
+       if(diffY > 0 && diffX > 0) {
+      
+      	atan += 180; 
+      }
+      else if(diffY < 0 && diffX > 0) {
+      
+      	atan -= 180;
+      }
+      
+      prevXY.X = mouseXY.X;
+      prevXY.Y = mouseXY.Y;
+      iCow.css({transform: "rotate(" + atan + "deg)"});
+    }
+    }, 10);
+</script>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<img id="cow" src="https://icons.iconarchive.com/icons/gakuseisean/ivista-2/128/Alarm-Arrow-Right-icon.png" height="30px" width="30px" style="position: absolute; top: 50%; left: 50%;"/>

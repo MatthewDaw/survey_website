@@ -37,7 +37,7 @@ if (typeof current_page_number == 'undefined'){
 } else {
     current_page_number = parseInt(current_page_number)
 }
-current_page_number = 1
+current_page_number = 5
 
 var page_dictionary = sessionStorage.getItem("page_dictionary");
 

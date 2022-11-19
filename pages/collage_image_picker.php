@@ -4,6 +4,7 @@
 
 <script>
 $("#search_for_images").click(function() {
+  // var current_search_query = $("#search_input_box").val();
     $.ajax({
         type: "POST",
         url: "pages/query_google_images.php?action=getImages",
