@@ -9,24 +9,12 @@
     </head>
 
 
-<div id="head">
+<div id="collage_header" >
     Add at least 5 photos and spend at least eight minutes working on the collage. Time left before you can leave this page: <span id="demo">8m 00s</span>
 </div>
 
 <div id='parent'>
     <div class='child'>
-
-        <div class="toolbar">
-    Current Tool: 
-        <select id="toolchooser">
-            <option>Move</option>
-            <option>Resize</option>
-            <option>Rotate</option>
-            <option>Bring to Front</option>
-            <option>Delete</option>
-        </select><br/>
-        Drag in any image from your computer to add it to the collage 
-    </div>
 
         <div id="collage_manipulator_container" ondrop="drop(event)" ondragover="allowDrop(event)">
             <?php
@@ -41,7 +29,7 @@
         <div class="toolbar">
             <div class="custom_form_input">
             <input type="text" id="search_input_box" class="form-control custom_input" placeholder="Search Key Word" aria-label="Recipient's username" aria-describedby="basic-addon2">
-        <button id="search_for_images" class="btn btn-outline-secondary custom_form_button" type="button">Search</button>
+            <button id="search_for_images" class="btn btn-outline-secondary custom_form_button" type="button">Search</button>
     </div>
         </div>
         <div class="editor_container">
@@ -53,7 +41,6 @@
     </div>
 
 </div>
-
 
 
 <script>
@@ -84,7 +71,7 @@ var x = setInterval(function() {
   // If the count down is over, write some text 
   if (distance < 0) {
     clearInterval(x);
-    $("#button_container").css({"justify-content":"space-between"})
+    // $("#button_container").css({"justify-content":"space-between"})
     $("#next_button").show()
     document.getElementById("demo").innerHTML = "0m 0s";
   }
@@ -112,23 +99,23 @@ body{
     padding:0;
 }
 
-#head{
+#collage_header{
+    position: absolute;
     width: 100%;
     height: 70px;
     display:flex;
     justify-content: center;
-    overflow: scroll;
-    z-index: 9999;
     border-style: solid;
     padding: 5px;
     background-color: white;
     padding-left: 20px;
-    z-index: 900000;
+    z-index: 900001;
+    padding-top:40px;
 }
 
 #parent{
     width: 100%;
-    height: 95%;
+    height: 100%;
     display: flex;
     flex-direction: row;
     background-color:white;
@@ -136,9 +123,7 @@ body{
 
 .child{
     width: 50%;
-    height: 100%;
     border-style: solid;
-    overflow: scroll;
     flex-direction:column;
     display: flex;
     justify-content: space-start;
@@ -146,17 +131,33 @@ body{
 
 #right_child{
     background-color:white;
+    z-index: 900000;
+    border-bottom:solid;
+    background-color:white;
+    margin-top:65px;
+}
+
+#navbar{
+    position:absolute;
+    right:0;
+    top:0;
+    z-index: 99000000;
+    height: 30px;
 }
 
 .toolbar
 {
-    height: 160px;
+    /* display:block; */
+    display: flex;
+  align-items: center;
+  justify-content: center;
+    height: 120px !important;
     width: 100%;
-    text-align: center;
+    /* text-align: center;
     position: relative;
-    z-index: 900000;
     padding-top: 20px;
-    align-content: center;
+    align-content: center; */
+    z-index: 900000;
     border-bottom:solid;
     background-color:white;
 }
@@ -168,6 +169,7 @@ body{
     text-align: center;
     position: relative;
     background-color:white;
+    overflow: scroll;
 }
 
 #collage_manipulator_container
@@ -176,7 +178,6 @@ body{
     width: 100%;
     text-align: center;
     text-align: left;
-    overflow: scroll;
 }
 
 .active_moving_image{
@@ -185,13 +186,49 @@ body{
 }
 
 #search_input_box{
-    width: 80%;
+    width: 400px;
     margin: auto;
     margin-bottom: 5px;
 }
 
-#footer_container{
+/* #footer_container{
+    position: absolute;
+    display: flex;
     border-top: solid;
+    z-index: 6;
+    height: 100%;
+} */
+
+.custom_form_input{
+    display: flex;
+
+  align-items: center;
+  justify-content: center;
+    flex-direction: column;
+
 }
 
+#footer_container{
+  width: 100%;
+  height: 100px;
+  float: bottom;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999999999;
+  bottom: 0px;
+  background-color: white;
+  padding-top:15px;
+  position: absolute;
+  border-top:solid;
+}
+
+
 </style>
+
+<script>
+
+// $("#right")
+
+</script>

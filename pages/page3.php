@@ -29,7 +29,7 @@ How to make your collage beautiful?
       if (current_img_instruction == image_name_list.length){
         $("#next_instruction_button").hide()
         $("#next_button").show()
-        $("#button_container").css({"justify-content":"space-between"})
+        // $("#button_container").css({"justify-content":"space-between"})
       }
   })
 

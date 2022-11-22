@@ -1,8 +1,10 @@
+
+function runPlugin(){
 (function ($) {
     $.fn.boxModeling = function (options) {
 
         const settings = $.extend({
-            boxSelector: 'box',
+            boxSelector: 'moving_image',
             handlerClass: 'resize-handler',
             minWidth: 40,
             minHeight: 40,
@@ -239,3 +241,5 @@
 
     };
 }(jQuery));
+}
+runPlugin()

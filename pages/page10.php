@@ -219,15 +219,19 @@ function collect_input(){
     align-content: center;
     overflow: scroll;
     margin-top: 10px;
+    height: 90%;
+    /* background-color:blue; */
+    
 }
 
 #main_container{
     width: 80%;
     overflow: scroll;
+    /* overflow: scroll; */
 }
 
 table{
-  overflow: scroll;
+  /* overflow: scroll; */
 }
 
 p{

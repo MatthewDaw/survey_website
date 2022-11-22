@@ -76,6 +76,7 @@ function collect_input(){
 
 
 #full_page{
+    margin: 30px;
     width: 100%;
     height: 900px;
     display:flex;

@@ -14,7 +14,7 @@
 <div id="page_container">
 
     <div id="sub_container">
-        <p>Thank you for taking the survey! Please fill your ID in the box below to clain your reward!</p>
+        <p>Thank you for taking the survey! Please fill your ID in the box below to begin the survey</p>
 
         <input type="text" class="form-control" id="mturkID" placeholder="Your Profile / Mturk ID" aria-label="Username" aria-describedby="basic-addon1">
 
@@ -49,7 +49,7 @@
 
 <script>
 
-$("#next_button").html("FINISH SURVEY")
+$("#next_button").html("BEGIN SURVEY")
 
 
 function collect_input(){

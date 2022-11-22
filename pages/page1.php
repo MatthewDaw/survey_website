@@ -96,6 +96,8 @@ function collect_input(){
   }
 }
 
+$("#next_button").html("Next")
+
 </script>
 
 

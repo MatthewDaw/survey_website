@@ -3,39 +3,43 @@ error_reporting(E_ERROR | E_PARSE);
 
 if ($_GET['action'] == "get_next_page") {
     if ($_POST['current_page'] == 1){
+        include("pages/intro_page.php");
+    }
+    
+    if ($_POST['current_page'] == 2){
         include("pages/page1.php");
     }
 
-    if ($_POST['current_page'] == 2){
+    if ($_POST['current_page'] == 3){
         include("pages/page2.php");
     }
 
-    if ($_POST['current_page'] == 3){
+    if ($_POST['current_page'] == 4){
         include("pages/page3.php");
     }
 
-    if ($_POST['current_page'] == 4){
+    if ($_POST['current_page'] == 5){
         include("pages/page5.php");
     }
 
-    if ($_POST['current_page'] == 5){
+    if ($_POST['current_page'] == 6){
         include("pages/main_collage.php");
     }
 
-    if ($_POST['current_page'] == 6){
+    if ($_POST['current_page'] == 7){
         include("pages/page7.php");
     }
 
-    if ($_POST['current_page'] == 7){
+    if ($_POST['current_page'] == 8){
         include("pages/page10.php");
     }
 
-    if ($_POST['current_page'] == 8){
+    if ($_POST['current_page'] == 9){
         include("pages/page11.php");
     }
 
-    if ($_POST['current_page'] == 9){
-        include("pages/page12.php");
+    if ($_POST['current_page'] == 10){
+        include("pages/page13.php");
         
     }
 

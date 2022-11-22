@@ -26,9 +26,9 @@
                 <label for="exampleInputEmail1">Age</label>
             </div>
 
-            <div class="col-sm">
-                <input type="range" min="1" max="100" value="30" class="slider" id="age_range">
-                <p>Value: <span id="demo"></span></p>
+            <div class="col-sm-1">
+            <input type="number" id="age_range" class="form-control custom_input" placeholder="Age In Years" >
+                
             </div>
         </div>
 
@@ -338,7 +338,7 @@ function collect_input(){
     output_values["job_status"] = $( "#job_status option:selected" ).text();
     output_values["income"] = $( "#income option:selected" ).text();
 
-    if (output_values["gender_select"] != 'Select' && output_values["nationality_select"] != 'Select' && output_values["marital_status_select"] != 'Select' && output_values["job_status"] != 'Select' && output_values["income"] != 'Select'){
+    if (output_values["gender_select"] != 'Select' && output_values["nationality_select"] != 'Select' && output_values["marital_status_select"] != 'Select' && output_values["job_status"] != 'Select' && output_values["income"] != 'Select' && output_values["age_range"] != ''){
         return output_values
     }
     return false
@@ -352,7 +352,9 @@ function collect_input(){
 
 <style>
 
-
+#age_range{
+    width: 200px;
+}
 
 #form_container{
     display: flex;

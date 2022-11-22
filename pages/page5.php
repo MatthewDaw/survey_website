@@ -66,15 +66,22 @@
 <script>
 
 $(document).ready(function(){
-    $('#next_button').attr('style', 'visibility:hidden');
+  $("#button_container").css({"justify-content":"center"})
+            $("#previous_button").show()
+            $("#next_button").hide()
 });
 
     $("#switch_button").click(function() {
         var is_checked = ($("#check_switch_value").is(":checked"))
         if (is_checked){
-            $('#next_button').attr('style', 'visibility:visible');
+          // $("#button_container").css({"justify-content":"space-between"})
+          $("#previous_button").show()
+            $("#next_button").show()
         } else {
-            $('#next_button').attr('style', 'visibility:hidden');
+
+          $("#button_container").css({"justify-content":"center"})
+            $("#previous_button").show()
+            $("#next_button").hide()
         }
         
     })
@@ -105,6 +112,11 @@ $(document).ready(function(){
       slides[slideIndex-1].style.display = "block";  
       dots[slideIndex-1].className += " active";
     }
+
+    function collect_input(){
+      return true
+    }
+
     </script>
 
 <style>
@@ -284,6 +296,7 @@ img {vertical-align: middle;}
 
 
 #main_content{
+    padding:20px;
     width: 100%;
     height: 100%;
     display: flex;

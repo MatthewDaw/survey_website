@@ -22,11 +22,13 @@ session_start();
 <div id="footer_container">
 
     <div id="button_container">
-        <button type="button" class="btn btn-primary navigation_button" id="previous_button">Previous</button>
+        <!-- <button type="button" class="btn btn-primary navigation_button" id="previous_button">Previous</button> -->
         <button type="button" class="btn btn-primary  navigation_button" id="next_button">Continue</button>
     </div>
   <progress id="progress_bar" value="0" max="100"> 100% </progress>
 </div>
+
+
 
 <script>
 
@@ -37,7 +39,7 @@ if (typeof current_page_number == 'undefined'){
 } else {
     current_page_number = parseInt(current_page_number)
 }
-current_page_number = 5
+current_page_number = 6
 
 var page_dictionary = sessionStorage.getItem("page_dictionary");
 
@@ -83,7 +85,7 @@ function prepare_page(){
             $("#previous_button").hide()
             $("#next_button").hide()
         } else {
-            $("#button_container").css({"justify-content":"space-between"})
+            // $("#button_container").css({"justify-content":"space-between"})
             $("#previous_button").show()
             $("#next_button").show()
         }
@@ -95,10 +97,9 @@ $("#next_button").click(function() {
         if (results != false){
             sessionStorage.setItem(current_page_number, JSON.stringify(results));
             page_dictionary[current_page_number] = results
-            // alert(current_page_number)
             current_page_number = parseInt(current_page_number) + 1
             prepare_page()
-        } else if(current_page_number != 5) {
+        } else if(current_page_number != 6) {
             alert("Please fill out all fields")
         }
 })
@@ -124,6 +125,7 @@ $("#previous_button").click(function() {
 }
 
 #navbar{
+    /* position:inherit; */
     width: 100%;
     height: 30px;
     background-color: rgb(66,66,66);
@@ -136,6 +138,7 @@ $("#previous_button").click(function() {
 #main_page_content{
   width: 100%;
   height: 90%;
+  overflow:scroll;
 }
 
 #footer_container{
