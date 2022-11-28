@@ -1,83 +1,191 @@
 
-<div id="main_container">
-<div id="ins_head">
-<h1>Collage Creation Instructions</h1>
+
+
+
+
+<div id="full_page">
+    <h1>Collage Creation Instructions</h1>
+<div id="main_page">
+    <div id="left_section">
+
+        <div id="row1">
+            <div class="box">
+                
+                <div class="top_section">
+                    <div class="number_circle">1</div>
+                </div>
+                <div class="text_box">
+                    <p>Search for images to add to collage.</p>
+                </div>
+            </div>
+            <div class="box">
+                <div class="top_section">
+                    <div class="number_circle">2</div>
+                </div>
+
+                <div class="text_box">
+
+                    <p>Choose an image that you associate with Scandinavian food the best</p>
+                    <p>click and drag the image onto the canvas</p>
+
+                </div>
+            </div>
+        </div>
+        <div id="row2">
+            <div class="box">
+                <div class="top_section">
+                    <div class="number_circle">3</div>
+                </div>
+                <div class="text_box">
+                <p>Position the picture in a way you consider appealing</p>
+                <p>Click on the current tool box to change the tool you wish to use for positioning the image.</p>
+                </div>
+            </div>
+            <div class="box">
+                
+                <div class="top_section">
+                    <div class="number_circle">4</div>
+                </div>
+                <div class="text_box">
+                <div id="special_instruction_wrapper">
+                        <div class="special_spacing_div">
+                        <p>When working on this, be sure to use images that remind you of the eating experience. We don't want images that Scandinavian countries themselves. Avoid using photos that have flags, famous landmarks, or other places or items about the country. We only want images that you remind you of actually eating in Scandinavia.</p>
+                        </div>
+                        <div class="special_spacing_div" id="special_spacing_div_for_img">
+                            <img id="example_image" src="images/good_picture_example.png">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+                
+
+    </div>
+    <!-- <div id="right_section">
+        <img id="collage_instruction" src="instruction_images/ins0.png">
+    </div> -->
+</div>
 </div>
 
-<div id="img_container">
-  <img src="instruction_images/ins1.png" id="ins_image">
-
-  <div id="next_instruction_button_container">
-    <button type="button" id="next_instruction_button" class="btn btn-secondary">Next Instruction</button>
-  </div>
-
-</div>
-</div>
 <script>
-  var current_img_instruction = 1
-
-  $("#next_button").hide()
-  $("#button_container").css({"justify-content":"center"})
-
-  var image_name_list = ["instruction_images/ins0.png","instruction_images/ins1.png","instruction_images/ins2.png","instruction_images/ins3.png","instruction_images/ins4.png","instruction_images/ins5.png","instruction_images/ins6.png","instruction_images/ins7.png"]
-
-  $("#ins_image").attr("src",image_name_list[current_img_instruction-1])
-
-  $("#next_instruction_button").click(function() {
-    current_img_instruction = Math.min(current_img_instruction+1, image_name_list.length)
-      $("#ins_image").attr("src",image_name_list[current_img_instruction-1])
-      if (current_img_instruction == image_name_list.length){
-        $("#next_instruction_button").hide()
-        $("#next_button").show()
-        $("#button_container").css({"justify-content":"space-between"})
-      }
-  })
 
 function collect_input(){
-  return true
+    return true
 }
 
 </script>
 
+
 <style>
 
-#main_container{
+
+#full_page{
     margin: 30px;
+    width: 100%;
+    height: 900px;
+    display:flex;
+    flex-direction: column;
 }
 
-#next_instruction_button{
-  width: 100%;
+#main_page{
+    width: 100%;
+    display:flex;
+    flex-direction: row;
 }
 
-#next_instruction_button_container{
-  width: 30%;
-  display: flex;
-  justify-content: center;
-  margin-top: 15px;
+#left_section{
+    width: 100%;
+    height: 750px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    row-gap: 20px;
+}
+
+#right_section{
+    width: 50%;
+    height: 750px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+#row1{
+    width: 100%;
+    height: 900px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    
+}
+
+#row2{
+    width: 100%;
+    height: 600px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    
+}
+
+.box{
+    height: 100%;
+    width: 45%;
 
 }
 
-#img_container{
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items:center;
-  justify-content: center;
-  flex-direction: column;
+.number_circle{
+    border-radius: 100%;
+    background-color: blue;
+    width: 40px;
+    height: 40px;
+    color:white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
 }
 
-#ins_head{
-  width: 100%;
-  height: 40px;
-  font-size: 40;
+.top_section{
+    height: 40px;
+    width: 100%;
 }
 
-#ins_image{
-  height: 60%;
+.text_box{
+    padding-top:20px;
+    width: 100%;
+    height: 90%;
 }
 
+p{
+    font-size: larger;
+}
 
+#special_instruction_wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-content: space-between;
+    height: 100%;
+}
+
+#example_image{
+    width: 60%;
+}
+
+.special_spacing_div{
+    width: 100%;
+}
+
+#special_spacing_div_for_img{
+    display: flex;
+    justify-content: space-around;
+}
+
+#collage_instruction{
+    width: 100%;
+}
 
 </style>
-
-

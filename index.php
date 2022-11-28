@@ -45,7 +45,6 @@ if (typeof page_dictionary == 'undefined' || page_dictionary == null) {
     page_dictionary = JSON.parse(page_dictionary);
 }
 
-
 var max_page = 10
 
 function prepare_page(){
@@ -103,7 +102,7 @@ $("#next_button").click(function() {
             page_dictionary[current_page_number] = results
             current_page_number = parseInt(current_page_number) + 1
             prepare_page()
-        } else if(current_page_number != 5) {
+        } else if(current_page_number != 5 && current_page_number != max_page-1) {
             alert("Please fill out all fields")
         }
 })

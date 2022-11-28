@@ -172,6 +172,8 @@ function past_image_to_canvas(src,x_position, y_position, rotation, width, heigh
 
 function save_current_image_data(){
     sessionStorage.setItem("collage_img_information", JSON.stringify(collage_data));
+    temp_res = $('#collage_manipulator_container').clone()
+    sessionStorage.setItem("collage_html_stuff", temp_res);
 }
 
 function add_new_image(src,x_position,y_position)
@@ -185,8 +187,6 @@ function add_new_image(src,x_position,y_position)
     $(new_img).css("top", y_position);
     $(new_img).css("left", x_position);
 }
-
-// add_new_image("https://upload.wikimedia.org/wikipedia/commons/8/8c/Cow_%28Fleckvieh_breed%29_Oeschinensee_Slaunger_2009-07-07.jpg", 300, 300)
 
 $('.moving_image').boxModeling({
             rotate: true,

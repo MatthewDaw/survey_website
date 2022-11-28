@@ -12,7 +12,7 @@
                         <div class="sub_example_text_container">
                             This collage is good.
                             <br>
-                            For the respondent, the Norwegien eating experience represents the job of spending money. It associates with juicy colors as the orange flowers and the rainbox cocktails. Travelling and laughter are also representative of how the collage maker feels abotu Visa. Skyscrappers represent the fact that this brand is modern and up-to-date.                            
+                            For the respondent, the Norwegien eating experience associates with juicy colors as the orange flowers and the rainbox cocktails. The images should evoke feelings associated with traveling, laughter, and memoriable vacationing. 
                         </div>
                     </div>
                     <div class="example_cell">
