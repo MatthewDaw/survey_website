@@ -12,7 +12,7 @@
 <script src="pages/html2canvas.min.js" defer></script>
 
 <div id="collage_header" >
-    <span style="text-align:center;" >Add at least 5 photos and spend at least eight minutes working on the collage. Time left before you can leave this page: <span id="demo">8m 00s</span></span>
+    <span style="text-align:center;" >Add at least 5 photos and spend at least five minutes working on the collage. Time left before you can leave this page: <span id="demo">5m 00s</span></span>
     <button type="button" id="view_collage_toggle" class="btn btn-secondary">View And Name Collage</button>
 </div>
 
@@ -53,12 +53,9 @@
     
 populate_collage()
 
-$( "#myModal" ).on('shown', function(){
-    alert("I want this to appear after the modal has opened!");
-});
 
 // Set the date we're counting down to
-var countDownDate = new Date(new Date().getTime()+(3*1000));
+var countDownDate = new Date(new Date().getTime()+(5*60*1000));
 
 $("#button_container").css({"justify-content":"center"})
 $("#next_button").hide()
