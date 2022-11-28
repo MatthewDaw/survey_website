@@ -16,7 +16,7 @@ if ($_GET['action'] == "getImages" or true){
   $curl = curl_init();
 
   curl_setopt_array($curl, [
-    CURLOPT_URL => "https://contextualwebsearch-websearch-v1.p.rapidapi.com/api/Search/ImageSearchAPI?q=".$search_query."&pageNumber=1&pageSize=280&autoCorrect=true",
+    CURLOPT_URL => "https://contextualwebsearch-websearch-v1.p.rapidapi.com/api/Search/ImageSearchAPI?q=".$search_query."&pageNumber=".$_POST['page_number']."&pageSize=280&autoCorrect=true",
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_FOLLOWLOCATION => true,
     CURLOPT_ENCODING => "",
@@ -44,3 +44,4 @@ if ($_GET['action'] == "getImages" or true){
 }
 
 ?>
+

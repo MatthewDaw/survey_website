@@ -12,9 +12,6 @@
 
 <script src="pages/box-modeling.js"></script>
 
-<!-- <div  class="moving_image" data-id="1" style="left: var(--left-1); top: var(--top-1); z-index: var(--zi-1); width: var(--width-1); height: var(--height-1); background-color: green;"></div> -->
-
-    <!-- <img class="active_moving_image" src="https://avatars3.githubusercontent.com/u/9167554?s=460&v=4" draggable=false /> -->
 <script>
 
 // this variable will hold whichever object is currently being dragged
@@ -31,7 +28,32 @@ var maxZ = 1;
 
 var collage_container_obj = document.getElementById('collage_manipulator_container')
 
-// $("#footer_container").css("z-index", maxZ+2)
+selected_image = null
+
+addEventListener('keydown', (event) => {
+      // Check for allowed keys on keydown with Code
+      if (event.keyCode === 32 || event.keyCode === 46 || event.keyCode === 8) {
+        if (selected_image !== null) {
+            var bg = $("#"+selected_image).css('background-image');
+            bg = bg.replace('url(','').replace(')','').replace(/\"/gi, "");
+            delete collage_data[bg];
+            document.getElementById(selected_image).remove();
+        }
+      }
+    });
+
+
+$(document).on("click", function(event){
+
+    var classnames = event.target.className;
+    split_class_names = classnames.split(" ");
+    if (split_class_names.includes("moving_image")){
+        selected_image = event.target.id;
+    } else {
+        selected_image = null
+    }
+
+})
 
 var time_at_last_update = performance.now();
 
@@ -46,7 +68,6 @@ function start_up_procedure(){
 $(window).load(function () {
     var current_search_query = ""
     start_up_procedure()
-    
 });
 
 
@@ -68,11 +89,9 @@ if(window.FileReader) {
       if (e.preventDefault) { e.preventDefault(); }
       return false;
     }
-  
     // Tells the browser that we *can* drop on this target
     collage_container_obj.addEventListener('dragover', cancel, false);
     collage_container_obj.addEventListener('dragenter', cancel, false);
-      
     collage_container_obj.addEventListener('drop', droppedImage, false);
   }, false);
 } else { 
@@ -115,15 +134,22 @@ Function.prototype.bindToEventHandler = function bindToEventHandler() {
 
 collage_data = {}
 
+function uuidv4() {
+  return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
+    (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
+  );
+}
+
+img_count = 0
 
 function past_image_to_canvas(src,x_position, y_position, rotation, width, height, z_index){
     var new_img = document.createElement("div");
-
     time_at_last_update = performance.now();
-
+    image_id = uuidv4()
     $(new_img).css("background-image", 'url("' + src + '")'  )
     $(new_img).attr("class", "moving_image")
     $(new_img).attr("data-id", "1")
+    $(new_img).attr("id", image_id)
 
     $(new_img).css("left", 500)
     $(new_img).css("top", 500)
@@ -141,24 +167,26 @@ function past_image_to_canvas(src,x_position, y_position, rotation, width, heigh
             resize: true,
             move: true,
         });
-    return new_img
+    return [new_img, image_id]
 }
 
 function save_current_image_data(){
     sessionStorage.setItem("collage_img_information", JSON.stringify(collage_data));
 }
 
-
 function add_new_image(src,x_position,y_position)
 {
-    new_img = past_image_to_canvas(src,x_position, y_position, 0, null, null, null)
- 
-    collage_data[src] = ($("#search_input_box").val(), (performance.now() - time_at_last_update)/1000)
+    results = past_image_to_canvas(src,x_position, y_position, 0, null, null, null)
+    new_img = results[0]
+    image_id = results[1]
+    collage_data[src] = [$("#search_input_box").val(), (performance.now() - time_at_last_update)/1000, image_id]
 
     save_current_image_data()
     $(new_img).css("top", y_position);
     $(new_img).css("left", x_position);
 }
+
+// add_new_image("https://upload.wikimedia.org/wikipedia/commons/8/8c/Cow_%28Fleckvieh_breed%29_Oeschinensee_Slaunger_2009-07-07.jpg", 300, 300)
 
 $('.moving_image').boxModeling({
             rotate: true,
@@ -208,5 +236,4 @@ $('.moving_image').boxModeling({
           --zi-2: 2;
       }
   </style>
-
 

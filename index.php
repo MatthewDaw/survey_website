@@ -1,6 +1,5 @@
 <?php
 session_start();
-
 ?>
 
 <head>
@@ -22,34 +21,30 @@ session_start();
 <div id="footer_container">
 
     <div id="button_container">
-        <!-- <button type="button" class="btn btn-primary navigation_button" id="previous_button">Previous</button> -->
-        <button type="button" class="btn btn-primary  navigation_button" id="next_button">Continue</button>
+        <button type="button" class="btn btn-primary navigation_button" id="previous_button">Previous</button>
+        <button type="button" class="btn btn-primary  navigation_button" id="next_button">Next</button>
     </div>
   <progress id="progress_bar" value="0" max="100"> 100% </progress>
 </div>
 
-
-
 <script>
-
 var current_page_number = sessionStorage.getItem("current_page_number");
-
 if (typeof current_page_number == 'undefined'){
     current_page_number = 1
 } else {
     current_page_number = parseInt(current_page_number)
+} if (isNaN(current_page_number)){
+    current_page_number = 1
 }
-current_page_number = 6
 
 var page_dictionary = sessionStorage.getItem("page_dictionary");
 
-if (typeof page_dictionary == 'undefined' || page_dictionary == null){
+if (typeof page_dictionary == 'undefined' || page_dictionary == null) {
     page_dictionary = {}
 } else {
     page_dictionary = JSON.parse(page_dictionary);
 }
 
-page_dictionary = {}
 
 var max_page = 10
 
@@ -57,24 +52,29 @@ function prepare_page(){
     // alert(current_page_number)
     sessionStorage.setItem("current_page_number", current_page_number);
     page_data = JSON.stringify(page_dictionary);
+    sessionStorage.setItem("page_dictionary", page_data);
+    
     if (current_page_number == max_page){
-        mturk_id = page_dictionary[max_page-1]["mturk_id"]
+        mturk_id = page_dictionary['9']
         page_data = JSON.stringify(page_dictionary);
+        page_dictionary = {}
+        
     } else {
-        mturk_id = null;
         page_data = null;
+        mturk_id = "";
     }
+
     $.ajax({
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            data:JSON.stringify({ "current_page":current_page_number, "survey_results":page_data, "mturk_id":mturk_id }),
             type: "POST",
             url: "backend.php?action=get_next_page",
-            data: "current_page=" + current_page_number + "&survey_results="+page_data + "&mturk_id="+mturk_id,
-            success: function(result) {
-                $("#main_page_content").html(result);
-                if ( typeof start_up_procedure == 'function' ) {
-                    start_up_procedure()
-                }
+            complete: function (result) {
+                $("#main_page_content").html(result['responseText']);
                 }
             })
+
         $("#progress_bar").val(100*((current_page_number-1)/(max_page-1)))
         if (current_page_number == 1){
             $("#button_container").css({"justify-content":"center"})
@@ -85,11 +85,15 @@ function prepare_page(){
             $("#previous_button").hide()
             $("#next_button").hide()
         } else {
-            // $("#button_container").css({"justify-content":"space-between"})
+            $("#button_container").css({"justify-content":"space-between"})
             $("#previous_button").show()
             $("#next_button").show()
         }
+        if (current_page_number == 10 ){
+            sessionStorage.removeItem('page_dictionary');
+        }
     }
+
 prepare_page()
 
 $("#next_button").click(function() {
@@ -99,7 +103,7 @@ $("#next_button").click(function() {
             page_dictionary[current_page_number] = results
             current_page_number = parseInt(current_page_number) + 1
             prepare_page()
-        } else if(current_page_number != 6) {
+        } else if(current_page_number != 5) {
             alert("Please fill out all fields")
         }
 })
@@ -155,7 +159,6 @@ $("#previous_button").click(function() {
   padding-top:15px;
   position: absolute;
 }
-
 
 #progress_bar{
     margin: 20px;

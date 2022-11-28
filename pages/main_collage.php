@@ -1,51 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
-        <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</head>
 
-        <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/flick/jquery-ui.css">
-        <script src="https://code.jquery.com/jquery-1.12.4.min.js"
-                integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ"
-                crossorigin="anonymous"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-    </head>
-
+<script src="pages/html2canvas.min.js" defer></script>
 
 <div id="collage_header" >
-    Add at least 5 photos and spend at least eight minutes working on the collage. Time left before you can leave this page: <span id="demo">8m 00s</span>
+    <span style="text-align:center;" >Add at least 5 photos and spend at least eight minutes working on the collage. Time left before you can leave this page: <span id="demo">8m 00s</span></span>
+    <button type="button" id="view_collage_toggle" class="btn btn-secondary">View And Name Collage</button>
 </div>
 
-<div id='parent'>
-    <div class='child'>
-
-        <div id="collage_manipulator_container" ondrop="drop(event)" ondragover="allowDrop(event)">
-            <?php
-            include("collage_manipulator.php")
-            ?>
-        </div>
-        
-    </div>
-
-    <div class="child" id="right_child">
-
-        <div class="toolbar">
-            <div class="custom_form_input">
-            <input type="text" id="search_input_box" class="form-control custom_input" placeholder="Search Key Word" aria-label="Recipient's username" aria-describedby="basic-addon2">
-            <button id="search_for_images" class="btn btn-outline-secondary custom_form_button" type="button">Search</button>
-    </div>
-        </div>
-        <div class="editor_container">
-            <?php
-            include("collage_image_picker.php")
-            ?>
+<div id="collage_container">
+    <div id='parent'>
+        <div class='child'>
+            <div id="collage_manipulator_container" ondrop="drop(event)" ondragover="allowDrop(event)">
+                <?php
+                include("collage_manipulator.php")
+                ?>
+            </div>
         </div>
 
-    </div>
+        <div class="child" id="right_child">
 
+            <div class="toolbar">
+                <div class="custom_form_input">
+                <input type="text" id="search_input_box" class="form-control custom_input" placeholder="Search Key Word" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                <button id="search_for_images" class="btn btn-outline-secondary custom_form_button" type="button">Search</button>
+        </div>
+            </div>
+            <div class="editor_container">
+                <?php
+                include("collage_image_picker.php")
+                ?>
+            </div>
+        </div>
+    </div>
 </div>
 
+<div id="collage_reviewer">
+    <?php
+    include("collage_review.php")
+    ?>
+</div>
 
 <script>
+    
+populate_collage()
+
+$( "#myModal" ).on('shown', function(){
+    alert("I want this to appear after the modal has opened!");
+});
+
 // Set the date we're counting down to
-var countDownDate = new Date(new Date().getTime()+(30*1000));
+var countDownDate = new Date(new Date().getTime()+(3*1000));
 
 $("#button_container").css({"justify-content":"center"})
 $("#next_button").hide()
@@ -71,7 +84,7 @@ var x = setInterval(function() {
   // If the count down is over, write some text 
   if (distance < 0) {
     clearInterval(x);
-    // $("#button_container").css({"justify-content":"space-between"})
+    $("#button_container").css({"justify-content":"space-between"})
     $("#next_button").show()
     document.getElementById("demo").innerHTML = "0m 0s";
   }
@@ -80,11 +93,49 @@ var x = setInterval(function() {
 
 </html>
 
+<input type="hidden" id="toggle_show_value" val="1"></input>
+
 <script>
+
+$("#view_collage_toggle").click(function() {
+    curent_viewing_page = $("#toggle_show_value").val()
+    if (curent_viewing_page == 0){
+        $("#view_collage_toggle").html("Edit Collage")
+        $("#toggle_show_value").val("1")
+        $("#collage_container").hide()
+        $("#collage_reviewer").show()
+        populate_collage()
+    } else {
+        $("#view_collage_toggle").html("View And Name Collage")
+        $("#toggle_show_value").val("0")
+        $("#collage_container").show()
+        $("#collage_reviewer").hide()
+    }
+})
+
+$( document ).ready(function() {
+    $("#collage_container").show()
+    $("#collage_reviewer").hide()
+    $("#toggle_show_value").val("0");
+})
 
 function collect_input(){
     if (Object.keys(collage_data).length > 4){
-        return collage_data
+
+        var collage_name = $("#collage_name").val();
+
+        var collage_description = $.trim($("#collage_description").val());
+
+        if (collage_name.length === 0){
+            alert("Please give collage a name")
+        } else if (collage_description.length < 300){
+            alert("Collage Description Must Have At Least 300 Characters")
+        } else {
+            collage_data['collage_name'] = collage_name
+            collage_data['collage_description'] = collage_description
+            return collage_data
+        }
+        return false
     } else {
         alert("You need to add at least 5 images to collage.")
         return false
@@ -93,7 +144,18 @@ function collect_input(){
 
 </script>
 
+
+
 <style>
+#collage_reviewer{
+    overflow:scroll;
+}
+
+#name_collage_section{
+    display:flex;
+    flex-direction:row;
+}
+
 body{
     margin:0;
     padding:0;
@@ -102,15 +164,18 @@ body{
 #collage_header{
     position: absolute;
     width: 100%;
-    height: 70px;
+    height: 100px;
     display:flex;
+    flex-direction: column;
     justify-content: center;
+    align-items:center;
     border-style: solid;
     padding: 5px;
     background-color: white;
     padding-left: 20px;
     z-index: 900001;
     padding-top:40px;
+    aligh-items:center;
 }
 
 #parent{
@@ -134,7 +199,7 @@ body{
     z-index: 900000;
     border-bottom:solid;
     background-color:white;
-    margin-top:65px;
+    margin-top:95px;
 }
 
 #navbar{
@@ -149,14 +214,10 @@ body{
 {
     /* display:block; */
     display: flex;
-  align-items: center;
-  justify-content: center;
+    align-items: center;
+    justify-content: center;
     height: 120px !important;
     width: 100%;
-    /* text-align: center;
-    position: relative;
-    padding-top: 20px;
-    align-content: center; */
     z-index: 900000;
     border-bottom:solid;
     background-color:white;
@@ -191,21 +252,11 @@ body{
     margin-bottom: 5px;
 }
 
-/* #footer_container{
-    position: absolute;
-    display: flex;
-    border-top: solid;
-    z-index: 6;
-    height: 100%;
-} */
-
 .custom_form_input{
-    display: flex;
-
+  display: flex;
   align-items: center;
   justify-content: center;
-    flex-direction: column;
-
+  flex-direction: column;
 }
 
 #footer_container{
@@ -221,14 +272,14 @@ body{
   background-color: white;
   padding-top:15px;
   position: absolute;
-  border-top:solid;
 }
 
+#toggle_collage{
+    width: 500px;
+}
 
 </style>
 
 <script>
-
-// $("#right")
 
 </script>

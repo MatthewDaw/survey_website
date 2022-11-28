@@ -2,23 +2,17 @@
 <img src="images/select_nation_background.png" id="banner_image">
 
 <div id="select_nation_main">
-
     <div id="select_nation_content">
-
         <p>We would like to know your familiarity with several nations.</p>
-
         <p>By "familiarity" we mean your overall awareness of the country, its cultuer, and your understanding of what kind of experiences the country represents. When answering, please consider the following:</p>
-
             <ol>
                 <li>To what extent are you familiar with the following country?</li>
                 <li>To what extent are you familiar with the eating experience of the following country?</li>
                 <li>Have you lived in the following country?</li>
             </ol>
-
     </div>
 
     <div id="form_entry">
-
 
         <table class="table table-bordered">
             <thead>
@@ -60,9 +54,7 @@
 
             </tbody>
           </table>
-
     </div>
-
 </div>
 
 <script>
@@ -96,7 +88,6 @@ function collect_input(){
   }
 }
 
-$("#next_button").html("Next")
 
 </script>
 
