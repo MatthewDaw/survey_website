@@ -59,10 +59,13 @@ def insert_user_responses(mycursor, user_responses):
                 break
 
         if good_to_add:
-            delete_sql = f"DELETE FROM `survey_results` WHERE `mturk_id`='{mturk_id}' "
-            mycursor.execute(delete_sql)
-            sql = f"INSERT INTO `survey_results`(`mturk_id`, `norway_familiarity`, `sweeden_familiarity`, `findland_familiarity`, `how_relivant_eating_in_norway`, `how_highly_regard`, `how_frequently_eating_in_norway`, `contemporary`, `cheerful`, `leader`, `real`, `upper_class`, `spirited`, `excited`, `glamorous`, `up_to_date`, `secure`, `tough`, `western`, `imaginative`, `technical`, `small_town`, `honest`, `unique`, `smooth`, `wholesome`, `gender_select`, `age_range`, `nationality_select`, `marital_status_select`, `job_status`, `income`) VALUES ( '{mturk_id}','{user_responses['1']['norway_familiarity']}','{user_responses['1']['sweeden_familiarity']}','{user_responses['1']['findland_familiarity']}','{user_responses['6']['how_relivant_eating_in_norway']}','{user_responses['6']['how_highly_regard']}','{user_responses['6']['how_frequently_eating_in_norway']}','{user_responses['7']['contemporary']}','{user_responses['7']['cheerful']}','{user_responses['7']['leader']}','{user_responses['7']['real']}','{user_responses['7']['upper_class']}','{user_responses['7']['spirited']}','{user_responses['7']['excited']}','{user_responses['7']['glamorous']}','{user_responses['7']['up_to_date']}','{user_responses['7']['secure']}','{user_responses['7']['tough']}','{user_responses['7']['western']}','{user_responses['7']['imaginative']}','{user_responses['7']['technical']}','{user_responses['7']['small_town']}','{user_responses['7']['honest']}','{user_responses['7']['unique']}','{user_responses['7']['smooth']}','{user_responses['7']['wholesome']}','{user_responses['8']['gender_select']}','{user_responses['8']['age_range']}','{user_responses['8']['nationality_select']}','{user_responses['8']['marital_status_select']}','{user_responses['8']['job_status']}','{user_responses['8']['income']}')"
-            mycursor.execute(sql)
+            # delete_sql = f"DELETE FROM `survey_results` WHERE `mturk_id`='{mturk_id}' "
+            # mycursor.execute(delete_sql)
+            # sql = f"-- INSERT INTO `survey_results`(`mturk_id`, `norway_familiarity`, `sweeden_familiarity`, `findland_familiarity`, `how_relivant_eating_in_norway`, `how_highly_regard`, `how_frequently_eating_in_norway`, `contemporary`, `cheerful`, `leader`, `real`, `upper_class`, `spirited`, `excited`, `glamorous`, `up_to_date`, `secure`, `tough`, `western`, `imaginative`, `technical`, `small_town`, `honest`, `unique`, `smooth`, `wholesome`, `gender_select`, `age_range`, `nationality_select`, `marital_status_select`, `job_status`, `income`) VALUES ( '{mturk_id}','{user_responses['1']['norway_familiarity']}','{user_responses['1']['sweeden_familiarity']}','{user_responses['1']['findland_familiarity']}','{user_responses['6']['how_relivant_eating_in_norway']}','{user_responses['6']['how_highly_regard']}','{user_responses['6']['how_frequently_eating_in_norway']}','{user_responses['7']['contemporary']}','{user_responses['7']['cheerful']}','{user_responses['7']['leader']}','{user_responses['7']['real']}','{user_responses['7']['upper_class']}','{user_responses['7']['spirited']}','{user_responses['7']['excited']}','{user_responses['7']['glamorous']}','{user_responses['7']['up_to_date']}','{user_responses['7']['secure']}','{user_responses['7']['tough']}','{user_responses['7']['western']}','{user_responses['7']['imaginative']}','{user_responses['7']['technical']}','{user_responses['7']['small_town']}','{user_responses['7']['honest']}','{user_responses['7']['unique']}','{user_responses['7']['smooth']}','{user_responses['7']['wholesome']}','{user_responses['8']['gender_select']}','{user_responses['8']['age_range']}','{user_responses['8']['nationality_select']}','{user_responses['8']['marital_status_select']}','{user_responses['8']['job_status']}','{user_responses['8']['income']}')"
+
+            sql = f"INSERT INTO `survey_results`(`mturk_id`, `norway_familiarity`, `sweeden_familiarity`, `findland_familiarity`, `how_relivant_eating_in_norway`, `how_highly_regard`, `how_frequently_eating_in_norway`, `contemporary`, `cheerful`, `leader`, `real`, `upper_class`, `spirited`, `excited`, `glamorous`, `up_to_date`, `secure`, `tough`, `western`, `imaginative`, `technical`, `small_town`, `honest`, `unique`, `smooth`, `wholesome`, `gender_select`, `age_range`, `nationality_select`, `marital_status_select`, `job_status`, `income`) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+
+            mycursor.execute(sql, ( mturk_id,user_responses['1']['norway_familiarity'], user_responses['1']['sweeden_familiarity'], user_responses['1']['findland_familiarity'], user_responses['6']['how_relivant_eating_in_norway'], user_responses['6']['how_highly_regard'], user_responses['6']['how_frequently_eating_in_norway'], user_responses['7']['contemporary'], user_responses['7']['cheerful'], user_responses['7']['leader'], user_responses['7']['real'], user_responses['7']['upper_class'], user_responses['7']['spirited'], user_responses['7']['excited'], user_responses['7']['glamorous'], user_responses['7']['up_to_date'], user_responses['7']['secure'], user_responses['7']['tough'], user_responses['7']['western'], user_responses['7']['imaginative'], user_responses['7']['technical'], user_responses['7']['small_town'], user_responses['7']['honest'], user_responses['7']['unique'], user_responses['7']['smooth'], user_responses['7']['wholesome'], user_responses['8']['gender_select'], user_responses['8']['age_range'], user_responses['8']['nationality_select'], user_responses['8']['marital_status_select'], user_responses['8']['job_status'], user_responses['8']['income']))
 
 def get_image_data(image_url, stub, metadata):
     request = service_pb2.PostModelOutputsRequest(
@@ -95,8 +98,8 @@ def get_image_captions(mycursor, user_responses):
                     if image_url != "collage_name":
                         data_response = get_image_data(image_url, stub, metadata)
                         for image_key, tag_probability in data_response.items():
-                            sql = f" INSERT INTO `collage_data` (`mturk_id`, `collage_name`, `collage_description`, `image_url`, `search_term`, `time_to_add_image`, `image_tag`, `tag_probability`) VALUES ('{user_id}', '{collage_name}', '{collage_description}', '{image_url}', '{image_meta_data[0]}','{image_meta_data[1]}', '{image_key}', '{tag_probability}' ) "
-                            mycursor.execute(sql)
+                            sql = f"INSERT INTO `collage_data` (`mturk_id`, `collage_name`, `collage_description`, `image_url`, `search_term`, `time_to_add_image`, `image_tag`, `tag_probability`) VALUES (%s, %s, %s, %s, %s, %s, %s, %s) "
+                            mycursor.execute(sql, (user_id, collage_name, collage_description, image_url, image_meta_data[0], image_meta_data[1], image_key, tag_probability))
 
 
 def fetch_table_data(table_name, cursor):
@@ -134,14 +137,10 @@ if __name__ == '__main__':
         database="survey_website-353030369582"
     )
     mycursor = mydb.cursor()
-    # mycursor.execute("SELECT mturkID FROM user_responses WHERE  mturkID NOT IN (SELECT mturk_id FROM survey_results) ")
-
-    mycursor.execute("SELECT mturkID FROM user_responses ")
-
+    mycursor.execute("SELECT mturkID FROM user_responses WHERE  mturkID NOT IN (SELECT mturk_id FROM survey_results) ")
+    # mycursor.execute("SELECT mturkID FROM user_responses  ")
     myresult = mycursor.fetchall()
-
     usser_responses = {}
-
     collage_responses = {}
 
     for x in myresult:
